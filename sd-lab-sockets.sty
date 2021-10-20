@@ -1,0 +1,116 @@
+% !TeX root = sd-lab-sockets.tex
+%******************************************************************************%
+% Packages
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{caption}
+
+\setbeamercovered{transparent}
+
+%\definecolor{links}{HTML}{0000FF}
+\definecolor{links}{rgb}{0.3,0.0,0.5}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+\newcounter{Exercise}
+\newcommand{\startExercise}{\stepcounter{Exercise}}
+\newcommand{\currentExercise}{\labN-\theExercise}
+
+\newcounter{Demo}
+\newcommand{\startDemo}{\stepcounter{Demo}}
+\newcommand{\currentDemo}{\labN-\theDemo}
+
+\newcommand{\hint}[1]{\hfill{\scriptsize \alert{!} {\color{gray}#1}}}
+\newcommand{\dhint}[1]{{\scriptsize{\color{gray}\dotfill #1}}}
+\newcommand{\fnhint}[1]{{\footnote{\scriptsize{\color{gray}#1}}}}
+
+\newcommand{\columsHH}[2]{\begin{columns}\begin{column}{.49\linewidth}#1\end{column}\hfill\begin{column}{.49\linewidth}#2\end{column}\end{columns}}
+
+\newcommand{\aea}{A\&A}
+\newcommand{\aealong}{Agent \& Artefact}
+\newcommand{\tucson}{{\sf {T}u{CS}o{N}}}
+\newcommand{\linda}{{\sc {L}inda}}
+\newcommand{\tuprolog}{{{\sf tu}{P}rolog}}
+\newcommand{\jade}{{\sc Jade}}
+\newcommand{\jason}{{Jason}}
+\newcommand{\jadelong}{{\sc J}ava {\sc A}gent {\sc DE}velopment Framework}
+\newcommand{\fipa}{FIPA}
+\newcommand{\acl}{ACL}
+\newcommand{\acllong}{$\mathcal{A}$gent $\mathcal{C}$ommunication $\mathcal{L}$anguage}
+
+%\definecolor{javared}{rgb}{0.6,0,0} % for strings
+%\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+%\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+%\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+%\definecolor{orangeRGB}{RGB}{255,128,0}
+%\definecolor{violetRGB}{RGB}{128, 0, 128}
+%\definecolor{fuchsiaRGB}{RGB}{255, 0, 255}
+%\definecolor{wildblueyonder}{rgb}{0.64, 0.68, 0.82}
+%\definecolor{wheat}{rgb}{1.000000,0.980392,0.941176}
+%
+%\definecolor{RGBex0}{RGB}{255,239,213}
+%\definecolor{RGBex1}{RGB}{255,240,245}
+%\definecolor{RGBex2}{RGB}{255,222,173}
+%\definecolor{RGBex3}{RGB}{119,136,153}
+%\definecolor{RGBex4}{RGB}{188,143,143}
+%\definecolor{RGBex5}{RGB}{255,245,238}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+
+\definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}
+\definecolor{camouflagegreen}{rgb}{0.47, 0.53, 0.42}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+	backgroundcolor=\color{aliceblue},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	basicstyle=\scriptsize\ttfamily,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=none,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=trBL,	                   % adds a frame around the code
+	frameround=fttt,
+	% adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	%language=Octave,                 % the language of the code
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=0,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+%
+%\lstset{language=Java,
+%	basicstyle=\scriptsize\ttfamily,
+%%	numbers=left,
+%	tabsize=2,
+%	sensitive=true,
+%	showspaces=false, showtabs=false, showstringspaces=false,
+%%	numbersep=5pt,
+%% 	commentstyle=\color{mygreen},
+%%	keywordstyle=\color{RoyalBlue}
+%}
+
+\newcommand{\cscat}[1]{$\langle\text{{\itshape#1}}\rangle$}
+\newcommand{\csopt}[1]{{\itshape[}#1{\itshape]}}
+\newcommand{\csalt}[1]{{\itshape(#1)}}
+\newcommand{\op}[1]{\alert{`\texttt{#1}'}}
+\newcommand{\operand}[1][\ldots]{{\normalcolor#1}}
+\newcommand{\literal}[1]{\texttt{\alert{#1}}}
+\newcommand{\bs}{$\backslash$}

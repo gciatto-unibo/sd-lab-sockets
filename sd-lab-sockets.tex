@@ -1,0 +1,162 @@
+% !TeX spellcheck = en_GB
+\documentclass{beamer}\mode<presentation>{\usetheme{AMSBolognaFC}}
+%\documentclass[presentation]{beamer}\mode<presentation>{\usetheme{AMSCesenaPurpleAndGold}}
+%%%%
+
+\usepackage{sd-lab-sockets}
+%\usepackage{my-listings}
+
+\newcommand{\labN}{4}
+\newcommand{\labGroup}{https://gitlab.com/pika-lab/courses/ds/ay2122}
+\newcommand{\labRepo}{\labGroup/lab-\labN}
+
+\title[L\labN{} -- Sockets]{L\labN{} -- TCP Sockets}
+%
+\subtitle[SD]{Distributed Systems\\\scriptsize Technologies}
+%
+\author[Ciatto \and Omicini]
+{\emph{Giovanni Ciatto} \and Andrea Omicini\\
+	\texttt{giovanni.ciatto@unibo.it \and andrea.omicini@unibo.it}}
+%
+\institute[DISI, Univ. Bologna]
+{Dipartimento di Informatica -- Scienza e Ingegneria (DISI)\\\textsc{Alma Mater Studiorum} -- Universit{\`a} di Bologna a Cesena}
+%
+\date[A.Y. 2021/2022]{Academic Year 2021/2022}
+
+\setbeamercovered{transparent}
+
+\AtBeginSection{
+	\begin{frame}[c]{Outline}
+		% 		\begin{multicols}{2}
+		\tableofcontents[sectionstyle=show/shaded, subsectionstyle=hide/hide, subsubsectionstyle=hide/hide]
+		% 		\end{multicols}
+	\end{frame}
+}
+
+\AtBeginSubsection{
+	\begin{frame}[c]{Next in Line\ldots}
+		\begin{multicols}{2}
+			\tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/shaded, subsubsectionstyle=hide/hide]
+		\end{multicols}
+	\end{frame}
+}
+
+\begin{document}
+
+%\\\\\\\\\\\\\\\\\\\\\
+\frame{\titlepage}
+%\\\\\\\\\\\\\\\\\\\\\
+
+\section{Overview}
+
+\begin{frame}[c]{Motivation \& Lecture Goals}
+
+Sockets are:
+%
+\begin{itemize}
+	\item an ancient, and stable abstraction for low-level networking
+
+	\vfill
+
+	\item very general design/API, virtually supported by all major programming languages
+
+	\vfill
+
+	\item very didactic: they require a good understanding of DS fundamentals
+    %
+    \begin{itemize}
+        \item[eg] client/server, or local/remote dichotomies
+    \end{itemize}
+
+	\vfill
+
+	\item very elementary: higher-level communication abstractions can be built on top of them
+	%
+	\begin{itemize}
+		\item[eg] RPC, HTTP, and virtually any application-level protocol
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[c]{Lab \labN{} Repository on GitLab}
+
+	\begin{itemize}
+		\item examples and exercises described in this lecture are provided by means of the following GitLab repository:
+		%
+		\begin{center}
+			\url{\labRepo}
+		\end{center}
+
+		\vfill
+
+		\item clone it on your machine using Git
+		%
+		\begin{itemize}
+		    \item[\$] \texttt{git clone \textit{<repo URL>}}
+		\end{itemize}
+
+		\vfill
+
+		\item even if a minimal environment simply relying on a text editor + Gradle is sufficient for this lab, we kindly suggest to import the cloned repository into some IDE, e.g. IntelliJ Idea or Eclipse
+
+		\vfill
+
+		\item in order to be able to submit your exercises, please ensure you requested access to the \href{\labGroup}{GitLab group of the course}
+	\end{itemize}
+
+\end{frame}
+
+\section{About Sockets}
+
+
+
+\section{Check Your Understanding}
+
+\startExercise
+
+\subsection{Sequential Echo Server}
+
+\begin{frame}[c,allowframebreaks]{Exercise \currentExercise{} -- Sequential Echo Server}
+
+    TBD
+
+\end{frame}
+
+\startExercise
+
+\subsection{Concurrent Echo Server}
+
+\begin{frame}[c,allowframebreaks]{Exercise \currentExercise{} -- Concurrent Echo Server}
+
+    TBD
+
+\end{frame}
+
+
+%===============================================================================
+\section*{}
+%===============================================================================
+
+%\\\\\\\\\\\\\\\\\\\\\
+\frame{\titlepage}
+%\\\\\\\\\\\\\\\\\\\\\
+
+%%===============================================================================
+%\section*{\refname}
+%%===============================================================================
+%
+%%\\\\\\\\\\\\\\\\\\\\\
+%%%%%
+%%\begin{frame}[t,allowframebreaks]\scriptsize
+%\begin{frame}[c]\footnotesize
+%\frametitle{\refname}
+%\bibliographystyle{apalike}
+%\bibliography{sd-lab-sockets}
+%\end{frame}
+%%\\\\\\\\\\\\\\\\\\\\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
