@@ -1,47 +1,34 @@
-% !TeX spellcheck = en_GB
-\documentclass{beamer}\mode<presentation>{\usetheme{AMSBolognaFC}}
-%\documentclass[presentation]{beamer}\mode<presentation>{\usetheme{AMSCesenaPurpleAndGold}}
-%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SD Lab -- Sockets
+% Giovanni Ciatto
+% Alma Mater Studiorum - Università di Bologna
+% mailto:giovanni.ciatto@unibo.it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[handout]{beamer}\mode<handout>{\usetheme{default}}
+%
+\documentclass[presentation]{beamer}\mode<presentation>{\usetheme{AMSBolognaFC}}
+%\documentclass[handout]{beamer}\mode<handout>{\usetheme{AMSBolognaFC}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{sd-lab-common}
 \usepackage{sd-lab-sockets}
-%\usepackage{my-listings}
-
-\newcommand{\labN}{4}
-\newcommand{\labGroup}{https://gitlab.com/pika-lab/courses/ds/ay2122}
-\newcommand{\labRepo}{\labGroup/lab-\labN}
-
-\title[L\labN{} -- Sockets]{L\labN{} -- Sockets}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[\currentLab{} -- Sockets]{Sockets}
 %
-\subtitle[SD]{Distributed Systems\\\scriptsize Technologies}
+\subtitle{\courseName{} (\courseAcronym) / Module \moduleN{}}
 %
-\author[Ciatto \and Omicini]
-{\emph{Giovanni Ciatto} \and Andrea Omicini\\
-	\texttt{giovanni.ciatto@unibo.it \and andrea.omicini@unibo.it}}
-%
-\institute[DISI, Univ. Bologna]
-{Dipartimento di Informatica -- Scienza e Ingegneria (DISI)\\\textsc{Alma Mater Studiorum} -- Universit{\`a} di Bologna a Cesena}
-%
-\date[A.Y. 2021/2022]{Academic Year 2021/2022}
-
-\setbeamercovered{transparent}
-
-\AtBeginSection{
-	\begin{frame}[c]{Outline}
-		% 		\begin{multicols}{2}
-		\tableofcontents[sectionstyle=show/shaded, subsectionstyle=hide/hide, subsubsectionstyle=hide/hide]
-		% 		\end{multicols}
-	\end{frame}
+\author[\sspeaker{\gcShort} \& \mmShort]{
+	\speaker{\gcFull} \and \mmFull
+	\\ 
+	\gcEmail \and \mmEmail
 }
-
-\AtBeginSubsection{
-	\begin{frame}[c]{Next in Line\ldots}
-		\begin{multicols}{2}
-			\tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/shaded, subsubsectionstyle=hide/hide]
-		\end{multicols}
-	\end{frame}
-}
-
+%
+\institute[\disiShort, \uniboShort]{\disi{} (\disiShort)\\\unibo}
+%
+\date[A.Y. \academicYear{}]{Academic Year \academicYear{}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\\\\\\\\\\\\\\\\\\\\\
 \frame{\titlepage}
@@ -102,7 +89,7 @@ Sockets are:
 
 		\vfill
 
-		\item in order to be able to submit your exercises, please ensure you requested access to the \href{\labGroup}{GitLab group of the course}
+		\item in order to be able to submit your exercises, please ensure you requested access to the \href{\gitlabGroup}{GitLab group of the course}
 	\end{itemize}
 
 \end{frame}
@@ -117,7 +104,7 @@ Sockets are:
     \end{block}
 
     \begin{description}
-        \item[distributed processes] | sockets aims at letting \alert{processes} communicate, so
+        \item[distributed processes] --- sockets aims at letting \alert{processes} communicate, so
         %
         \begin{itemize}\small
             \item multiple processes on the same machine may communicate via sockets
@@ -126,7 +113,7 @@ Sockets are:
 
         \smallskip
 
-        \item[communication] | information exchange is \alert{explicit}
+        \item[communication] --- information exchange is \alert{explicit}
         %
         \begin{itemize}\small
             \item expect methods to send or receive data, explicitly
@@ -134,11 +121,11 @@ Sockets are:
 
         \smallskip
 
-        \item[point-to-point] | each socket mediates the interaction among \alert{two (and only two)} processes
+        \item[point-to-point] --- each socket mediates the interaction among \alert{two (and only two)} processes
 
         \smallskip
 
-        \item[multiplexable] | multiple independent sockets may be created, on different \alert{ports}
+        \item[multiplexable] --- multiple independent sockets may be created, on different \alert{ports}
         %
         \begin{itemize}\small
             \item ports are positive 2-bytes integers in the range from 1 to $2^{16}-1$,
@@ -148,7 +135,7 @@ Sockets are:
 
         \smallskip
 
-        \item[full-duplex] | exchanged data may flow in both verses simultaneously
+        \item[full-duplex] --- exchanged data may flow in both verses simultaneously
         %
         \begin{itemize}\small
             \item[ie] the receiver may send data while receiving
@@ -191,8 +178,8 @@ Sockets are:
 
     \begin{block}{Client vs. Server}
         \begin{description}
-            \item[client socket] | the one used to \alert{initiate} data exchange
-            \item[server socket] | the one used to \alert{wait} for data exchange to be initiated
+            \item[client socket] --- the one used to \alert{initiate} data exchange
+            \item[server socket] --- the one used to \alert{wait} for data exchange to be initiated
         \end{description}
     \end{block}
 
@@ -214,7 +201,7 @@ Sockets are:
         \item We focus on \alert{stream}, \alert{TCP}-based, \alert{connection-oriented} sockets\ldots
         %
         \begin{center}
-            \includegraphics[width=\linewidth]{img/sockets.pdf}
+            \includegraphics[width=\linewidth]{figures/sockets.pdf}
         \end{center}
 
         \smallskip
@@ -222,8 +209,8 @@ Sockets are:
         \item \ldots which include two \alert{streams}:
         %
         \begin{description}\small
-            \item[input stream] | for receiving bytes from the remote host
-            \item[output stream] | for sending bytes to the remote host
+            \item[input stream] --- for receiving bytes from the remote host
+            \item[output stream] --- for sending bytes to the remote host
         \end{description}
 
         \smallskip
@@ -306,7 +293,8 @@ Sockets are:
 
             \item \alert{\texttt{getOutputStream(): \textit{OutputStream}}} returns the output stream of this socket
 
-            \item \alert{\texttt{close()}} closes the \texttt{Socket} (and the underlying TCP connection)
+            \item \alert{\texttt{close()}} closes the \texttt{Socket}, and the underlying TCP connection (therefore both the input and output streams)
+            
         \end{itemize}
 
         \framebreak
@@ -417,7 +405,7 @@ Sockets are:
     In a nutshell:
     %
     \begin{center}
-        \includegraphics[width=.6\linewidth]{img/socket-connection-overview.png}
+        \includegraphics[width=.6\linewidth]{figures/socket-connection-overview.png}
     \end{center}
 
     \framebreak
@@ -425,7 +413,7 @@ Sockets are:
     Detailed example: \hint{zoomable version \href{http://www.plantuml.com/plantuml/svg/nLLDRzim33rRlu9mWJK36cJ9iLY68aNH3IkQOktGIu52iPbQY2DbafoFVpzAjfmwKBSKE-oIs1RvI3xoKHV6ScshPSbE2v4Zp9MoCxLbPY7aYck-X8dQtl4y5_85XfyOeqD8lofZOPZ2oOruAUoah90bcP9MgnBkKQzHiuIyhSZ4YaiBq_iXiEGKPggIETSxk5VP0ks8iV4OZ7U0KXYBqeKPZnbBQXZeV_7Evm1fAd7JeDVklOzfoXAUMR7c5aDWoaGZlRV1EZui8JX2xNmaUEyZb6m3V-xt3sqqsafB-fkZHfaXM0KPBqjNROw7UGIaIB0qdGcPznwlRcwUlzzE7s-VxwO_7gBL91tNbWsDdZL2EW3n6AKzkLPbthJdMYFAc2K80tpDHSbd9OAI3fibVoN04DPQYTo5mj8WdDm9kNWhmAmoksEmRQ7Lna5FY9ghROOhrmuVG-RluTVHopFdtti7eytuqVnho9IKcBdm1fICSnoPicQaap1YuSkhuM9K2tbiNyjebB93iOpsQhei1KfB5YIKp3-7z5gba3qHsbZ2UH1AJ28jMZpvOGtMfZxi22DywzEv1pfU4stW5gIRS5DIBooMCuXheulMWlacZWXftpdG-Aj2Otr3qu2RDdI5haSTj5e6Zv7tYEifOFefrrHg4MHa2mI9TgFq0ZwuDus0Ms6i0GuhhJ8qVh24tI-zjmQD9VKqnKf4OocaC0Nci16sw6PT5xhlvJ6-WQD8hsFo9qEfB89sj82QDwRdmKMO49AYIBKvUv9SvewiVES6HKYBchfAE9rLSiabuJfVIwTGA6DzaaA25KjKbNsZlexVCIMrMwS-VQZHE-idOKrkeVjyTspp9pyVN9CBRa0gVy-93F-jvoIqoc0UgJzg5wRvU2A-JLzNxxTlLCdj9gF59EgobyZbfX0j3-5cDo97MbN_NKdTjKn5krlOpI6k2boYvYMibBPFik6HZWAvxUPgAFU5_N7zEJaC1k4Y6WpYLvYNJubphvw06XwEbWzpJRgWdsfP_WO0}{here}}
     %
     \begin{center}
-        \includegraphics[width=.5\linewidth]{img/sockets-connection.pdf}
+        \includegraphics[width=.5\linewidth]{figures/sockets-connection.pdf}
     \end{center}
 
 \end{frame}
@@ -434,7 +422,7 @@ Sockets are:
 
     Reading a \alert{stream of bytes} from a socket:
     %
-    \lstinputlisting[language=Java]{code/bufferedRead.java}
+    \lstinputlisting[language=Java]{listings/bufferedRead.java}
     %
     \begin{itemize}
         \item here we suppose some callbacks are handling the read bytes
@@ -455,7 +443,7 @@ Sockets are:
 
     Writing a \alert{byte array} into a socket:
     %
-    \lstinputlisting[language=Java]{code/writeData.java}
+    \lstinputlisting[language=Java]{listings/writeData.java}
     %
     %
     \begin{itemize}
@@ -521,7 +509,7 @@ Sockets are:
     \end{alertblock}
 
     \begin{center}
-        \includegraphics[width=\linewidth]{img/echoer.pdf}
+        \includegraphics[width=\linewidth]{figures/echoer.pdf}
     \end{center}
 
 \end{frame}

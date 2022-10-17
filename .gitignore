@@ -1,8 +1,5 @@
-.DS_Store
 sd-lab-sockets.pdf
-*~
 
-### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -114,6 +111,8 @@ acs-*.bib
 *.glo
 *.gls
 *.glsdefs
+*.lzo
+*.lzs
 
 # uncomment this for glossaries-extra (will ignore makeindex's style files!)
 # *.ist
@@ -231,8 +230,9 @@ pythontex-files-*/
 # xindy
 *.xdy
 
-# xypic precompiled matrices
+# xypic precompiled matrices and outlines
 *.xyc
+*.xyd
 
 # endfloat
 *.ttt
@@ -255,8 +255,14 @@ TSWLatexianTemp*
 # Kile
 *.backup
 
+# gummi
+.*.swp
+
 # KBibTeX
 *~[0-9]*
+
+# TeXnicCenter
+*.tps
 
 # auto folder when using emacs and auctex
 ./auto/*
@@ -268,130 +274,5 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
-### LaTeX Patch ###
-# glossaries
-*.glstex
-
-### TeX ###
-
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
-
-
-
-
-# latexrun
-
-# algorithms
-
-# achemso
-
-# amsthm
-
-# beamer
-
-# changes
-
-# comment
-
-# cprotect
-
-# elsarticle (documentclass of Elsevier journals)
-
-# endnotes
-
-# fixme
-
-# feynmf/feynmp
-
-
-# glossaries
-
-# uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
-
-# gnuplottex
-
-# gregoriotex
-
-# htlatex
-
-# hyperref
-
-# knitr
-# TODO Comment the next line if you want to keep your tikz graphics files
-
-# listings
-
-# luatexja-ruby
-
-# makeidx
-
-# minitoc
-
-# minted
-
-# morewrites
-
-# nomencl
-
-# pax
-
-# pdfpcnotes
-
-# sagetex
-
-# scrwfile
-
-# sympy
-
-# pdfcomment
-
-# pythontex
-
-# tcolorbox
-
-# thmtools
-
-# TikZ & PGF
-
-# todonotes
-
-# vhistory
-
-# easy-todo
-
-# xcolor
-
-# xmpincl
-
-# xindy
-
-# xypic precompiled matrices
-
-# endfloat
-
-# Latexian
-
-# WinEdt
-
-# Texpad
-
-# LyX
-
-# Kile
-
-# KBibTeX
-
-# auto folder when using emacs and auctex
-
-# expex forward references with \gathertags
-
-# standalone packages
-
-### TeX Patch ###
-# glossaries
-
-# End of https://www.gitignore.io/api/tex,latex
+# Makeindex log files
+*.lpz
