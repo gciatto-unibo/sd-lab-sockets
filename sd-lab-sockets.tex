@@ -270,7 +270,7 @@ Sockets are:
     \bigskip
     %
     \begin{itemize}
-        \item \texttt{java.net.\alert{Socket}} class for \alert{client} stream sockets \fnhint{\href{https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/Socket.html}{documentation of \texttt{Socket}}}
+        \item \texttt{java.net.\alert{Socket}} class for \alert{client} stream sockets \fnhint{\href{\javadoc{java/net/Socket.html}}{documentation of \texttt{Socket}}}
         %
         \begin{itemize}
             \item \alert{\texttt{new Socket()}} creates an unconntected socket
@@ -295,11 +295,14 @@ Sockets are:
 
             \item \alert{\texttt{close()}} closes the \texttt{Socket}, and the underlying TCP connection (therefore both the input and output streams)
             
+            \item \alert{\texttt{shutdownInput()}} closes the \texttt{Socket}'s input stream alone
+            
+            \item \alert{\texttt{shutdownOutput()}} closes the \texttt{Socket}'s output stream alone
         \end{itemize}
 
         \framebreak
 
-        \item \texttt{java.net.\alert{ServerSocket}} class for \alert{server} stream sockets \fnhint{\href{https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/ServerSocket.html}{documentation of \texttt{ServerSocket}}}
+        \item \texttt{java.net.\alert{ServerSocket}} class for \alert{server} stream sockets \fnhint{\href{\javadoc{java/net/ServerSocket.html}}{documentation of \texttt{ServerSocket}}}
         %
         \begin{itemize}
             \item \alert{\texttt{new ServerSocket()}} creates an unbound server socket
@@ -331,12 +334,16 @@ Sockets are:
             \item \alert{\texttt{getOutputStream()}} as in \texttt{Socket}
 
             \item \alert{\texttt{close()}} as in \texttt{Socket}
+            
+            \item \alert{\texttt{shutdownInput()}} as in \texttt{Socket}
+            
+            \item \alert{\texttt{shutdownOutput()}} as in \texttt{Socket}
 
         \end{itemize}
 
         \framebreak
 
-        \item \texttt{java.net.\alert{InetSocketAddress}} a sub-type of \texttt{\textit{SocketAddress}}, represent a hostname/address + port couple \fnhint{\href{https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/InetSocketAddress.html}{documentation of \texttt{InetSocketAddress}}}
+        \item \texttt{java.net.\alert{InetSocketAddress}} a sub-type of \texttt{\textit{SocketAddress}}, represent a hostname/address + port couple \fnhint{\href{\javadoc{java/net/InetSocketAddress.html}}{documentation of \texttt{InetSocketAddress}}}
         %
         \begin{itemize}
             \item \alert{\texttt{new InetSocketAddress(\textit{int} port)}} any IP address on the local machine, on the specified \texttt{port}
@@ -351,7 +358,7 @@ Sockets are:
 
         \framebreak
 
-        \item \texttt{java.io.\alert{InputStream}} base type for input streams \fnhint{\href{https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/InputStream.html}{documentation of \texttt{InputStream}}}
+        \item \texttt{java.io.\alert{InputStream}} base type for input streams \fnhint{\href{\javadoc{java/io/InputStream.html}}{documentation of \texttt{InputStream}}}
         %
         \begin{itemize}
             \item \alert{\texttt{read(\textit{byte[]} buffer): \textit{int}}} attempts to read \texttt{buffer.length} bytes from the stream, putting them in the \texttt{buffer}; returns the amount of bytes actually read
@@ -365,14 +372,13 @@ Sockets are:
             \item \alert{\texttt{close()}} closes the input stream
             %
             \begin{itemize}
-                \item if this is some socket's stream, this implies the output stream of the remote end is closed as well
                 \item throw \texttt{IOException} in case of problems
             \end{itemize}
         \end{itemize}
 
         \framebreak
 
-        \item \texttt{java.io.\alert{OutputStream}} base type for output streams \fnhint{\href{https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/OutputStream.html}{documentation of \texttt{OutputStream}}}
+        \item \texttt{java.io.\alert{OutputStream}} base type for output streams \fnhint{\href{\javadoc{java/io/OutputStream.html}}{documentation of \texttt{OutputStream}}}
         %
         \begin{itemize}
             \item \alert{\texttt{write(\textit{byte[]} buffer, \textit{int} offset, \textit{int} length)}} attempts to write \texttt{length} bytes into the stream, reading them from the \texttt{buffer}, starting from position \texttt{offset}
@@ -391,12 +397,29 @@ Sockets are:
             \item \alert{\texttt{close()}} closes the output stream
             %
             \begin{itemize}
-                \item if this is some socket's stream, this implies the input stream of the remote end is closed as well
                 \item throw \texttt{IOException} in case of problems (e.g. closed socket)
             \end{itemize}
         \end{itemize}
 
     \end{itemize}
+
+    \framebreak
+
+    \begin{alertblock}{Counter-intuitive peculiarity of JDK}
+        \begin{description}
+            \item When an \texttt{Input}/\texttt{OutputStream} is actually owned by a \texttt{Socket}, its \texttt{\alert{close()}} actually closes the whole socket
+            %
+            \begin{itemize}
+                \item so closing the input stream provokes the closure of the output stream
+                \item and vice versa
+            \end{itemize}
+            \item You can use \texttt{OutputStream.}\alert{\texttt{shutdownInput}/\texttt{Output}()} instead
+            %
+            \begin{itemize}
+                \item to selectively close one stream
+            \end{itemize}
+        \end{description}
+    \end{alertblock}
 
 \end{frame}
 
